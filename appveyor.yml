@@ -32,24 +32,15 @@ after_build:
 
     7z a dnSpy_MyOpCodeTable.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\*.*
 
-artifacts:
-  - path: MyOpCodeTable.zip
-    name: MyOpCodeTable
-    type: zip
+    appveyor PushArtifact MyOpCodeTable.zip
 
-  - path: dnSpy_MyOpCodeTable.zip
-    name: dnSpy MyOpCodeTable
-    type: zip
-
+    appveyor PushArtifact dnSpy_MyOpCodeTable.zip
 deploy:
+- provider: GitHub
   release: MyOpCodeTable-v$(APPVEYOR_BUILD_VERSION)
-  description: 'Release description'
-  provider: GitHub
+  description: Release description
   auth_token:
-    secure: mrchthX5222OisS9nHqIqncf8OfDaPwqMS/SG5hhXaFodzF4UUmjOCZG7DJBPa8r
+    secure: BJFiPQhbi4Q9jbg6AYqI4Gy2W6B61y2tH9ggn2Jrj/c/yURY8dAmb9ULlkyTejQW
   artifact: /.*\.zip/
-  draft: false
-  prerelease: false
   on:
     branch: master
-    APPVEYOR_REPO_TAG: false
