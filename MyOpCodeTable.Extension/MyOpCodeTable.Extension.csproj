@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;net6.0-windows;</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <TelerikVersion>2022.3.913</TelerikVersion>
+    <AssemblyName>$(MSBuildProjectName).x</AssemblyName>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyOpCodeTable.Shared\MyOpCodeTable.Shared.csproj" />
+  <Reference Include="dnlib">
+    <HintPath>..\lib\EXT\dnlib.dll</HintPath>
+  </Reference>
+  <Reference Include="DnSpy.Contracts">
+    <HintPath>..\lib\EXT\dnSpy.Contracts.DnSpy.dll</HintPath>
+  </Reference>
+  <Reference Include="dnSpy.Contracts.Logic">
+    <HintPath>..\lib\EXT\dnSpy.Contracts.Logic.dll</HintPath>
+  </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+    <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="TelerikCommon">
+      <HintPath>..\lib\RCWF\$(TelerikVersion).48\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls">
+      <HintPath>..\lib\RCWF\$(TelerikVersion).48\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI">
+      <HintPath>..\lib\RCWF\$(TelerikVersion).48\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView">
+      <HintPath>..\lib\RCWF\$(TelerikVersion).48\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Fluent">
+      <HintPath>..\lib\RCWF\$(TelerikVersion).48\Telerik.WinControls.Themes.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.FluentDark">
+      <HintPath>..\lib\RCWF\$(TelerikVersion).48\Telerik.WinControls.Themes.FluentDark.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ShouldAddDPIScalingManifest="" />
+    </VisualStudio>
+  </ProjectExtensions>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="del /F /Q $(OutDir)\*.xml;&#xD;&#xA;del /F /Q $(OutDir)\*.pdb;&#xD;&#xA;del /F /Q $(OutDir)\dnlib.dll;&#xD;&#xA;del /F /Q $(OutDir)\dnSpy.Contracts.DnSpy.dll;&#xD;&#xA;del /F /Q $(OutDir)\dnSpy.Contracts.Logic.dll;" />
+  </Target>
+</Project>
