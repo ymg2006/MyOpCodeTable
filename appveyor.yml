@@ -12,25 +12,25 @@ after_build:
 
     7z a MyOpCodeTable-netframework.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable\bin\Release\net48\*.*
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.CoreUtility.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.CoreUtility.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Language.Intellisense.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Language.Intellisense.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Language.Intellisense.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Language.Intellisense.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Text.Data.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.Data.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Text.Logic.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.Logic.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Text.UI.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.UI.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Text.UI.Wpf.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.UI.Wpf.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Validation.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Validation.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\Microsoft.VisualStudio.Language.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Language.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\StreamJsonRpc.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\StreamJsonRpc.dll
 
     7z a dnSpy_MyOpCodeTable-net6.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net6.0-windows\*.*
     
