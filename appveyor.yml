@@ -1,67 +1,44 @@
 version: 1.6.{build}
-image: Visual Studio 2017
+image: Visual Studio 2022
 configuration: Release
 platform: Any CPU
-before_build:
-- cmd: nuget restore
 build:
   verbosity: minimal
 after_build:
 - cmd: >-
-    7z a MyOpCodeTable-net6.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable\bin\Release\net6.0-windows\*.*
+    7z a MyOpCodeTable.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable\bin\Release\*.*
 
-    7z a MyOpCodeTable-netframework.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable\bin\Release\net48\*.*
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.CoreUtility.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.CoreUtility.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Language.Intellisense.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Language.Intellisense.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Language.Intellisense.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Language.Intellisense.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Text.Data.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.Data.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Text.Logic.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.Logic.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Text.UI.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.UI.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Text.UI.Wpf.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Text.UI.Wpf.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Validation.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Validation.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\Microsoft.VisualStudio.Language.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\Microsoft.VisualStudio.Language.dll
+    del %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\StreamJsonRpc.dll
 
-    del %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\StreamJsonRpc.dll
+    7z a dnSpy_MyOpCodeTable.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodesExtension\bin\Release\*.*
 
-    7z a dnSpy_MyOpCodeTable-net6.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net6.0-windows\*.*
-    
-    7z a dnSpy_MyOpCodeTable-netframework.zip %APPVEYOR_BUILD_FOLDER%\MyOpCodeTable.Extension\bin\Release\net48\*.*
+    appveyor PushArtifact MyOpCodeTable.zip
 
-artifacts:
-  - path: MyOpCodeTable-net6.zip
-    name: MyOpCodeTable net6
-    type: zip
-
-  - path: MyOpCodeTable-netframework.zip
-    name: MyOpCodeTable netframework
-    type: zip
-
-  - path: dnSpy_MyOpCodeTable-net6.zip
-    name: dnSpy MyOpCodeTable net6
-    type: zip
-
-  - path: dnSpy_MyOpCodeTable-netframework.zip
-    name: dnSpy MyOpCodeTable netframework
-    type: zip
-
+    appveyor PushArtifact dnSpy_MyOpCodeTable.zip
 deploy:
+- provider: GitHub
   release: MyOpCodeTable-v$(APPVEYOR_BUILD_VERSION)
-  description: 'Release description'
-  provider: GitHub
+  description: Release description
   auth_token:
-    secure: mrchthX5222OisS9nHqIqncf8OfDaPwqMS/SG5hhXaFodzF4UUmjOCZG7DJBPa8r
+    secure: sGvXHW8/VMYpZ9+X7/KMOGnYRnA+Opj0/wK20UjJZbFtDP22dxRsC7C+M44h702u
   artifact: /.*\.zip/
-  draft: false
-  prerelease: false
   on:
     branch: master
-    APPVEYOR_REPO_TAG: false
