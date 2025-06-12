@@ -38,7 +38,7 @@ deploy:
   release: MyOpCodeTable-v$(APPVEYOR_BUILD_VERSION)
   description: Release description
   auth_token:
-    secure: sGvXHW8/VMYpZ9+X7/KMOGnYRnA+Opj0/wK20UjJZbFtDP22dxRsC7C+M44h702u
+    secure: 5ZaT9wKNoENOi2va55xzYo5MQyHlqRyQr71DFBw6A7ovfj0CBwa20gQrl13IjbqX
   artifact: /.*\.zip/
   on:
     branch: master
